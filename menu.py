@@ -39,12 +39,13 @@ User interface: -> provides prompt to user
     app_back_to_main_menu(user_input): user enters input to return to main menu
     app_back_to_analytics(user_input): user enters input to return to analytics menu
     app_back_to_habit_menu(user_input, index): user enters input to return to habit management menu
-
 Auxiliary functions:
     reset_global_variables(): resets global variables to their standard values
     clear_screen(): clears command line interface
     check_threshold(): check if daily and weekly threshold values exceed potential completions in period
     print_app_heading(): prints application heading
+
+main(): initializes the application and starts it
 """
 
 import analytics_module
