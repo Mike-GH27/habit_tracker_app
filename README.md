@@ -17,6 +17,8 @@ While in the directory start the application by starting the menu.py file. Type 
 * python menu.py (Windows)
 * python3 menu.py (Linux/Mac)
 
+The CLI is mostly navigated by entering the menu item numbers into the console. For example, you enter "5" into the console in the main menu to save and exist the application.
+
 ## Test data
 To try out the functionality, test data is provided in the tracker_testing_data.py file. Running the file will create
 a save file called "user_data.db", which will be automatically loaded upon starting the application. Note: running the file will replace the
