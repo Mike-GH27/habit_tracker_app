@@ -24,7 +24,7 @@ current save file, so make sure to backup your user data before running the scri
 
 To remove the test data, just delete "user_data_db" in the main directory.
 
-To setup the test data type into the console, while being in the directory:
+To setup the test data type into the console the following (while being in the main directory):
 * python tracker_testing_data.py (Windows)
 * python3 tracker_testing_data.py (Linux/Mac)
 
