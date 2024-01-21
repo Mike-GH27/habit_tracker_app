@@ -20,7 +20,7 @@ While in the directory start the application by starting the menu.py file. Type 
 ## Test data
 To try out the functionality, test data is provided in the tracker_testing_data.py file. Running the file will create
 a save file called "user_data.db", which will be automatically loaded upon starting the application. Note: running the file will replace the
-the current save file, so make sure to backup your user data before running the script.
+current save file, so make sure to backup your user data before running the script.
 
 To remove the test data, just delete "user_data_db" in the main directory.
 
