@@ -1,3 +1,19 @@
+"""
+This module provides functions to analyze habit completion data
+
+count_habit(inlist, period): counts number of completions for given period and list of habits
+habit_completion_counts(inlist, indate_early, indate_late): counts number of completion for each habit in giuven period
+completions_habits(inlist, indate_early, indate_late): returns stats like actual and potential completions
+habit_completion_stats(inlist, indate_early, indate_end): returns table with habit data and completion statistics
+performance(df, mode): returns best or worst performing habits or ranking
+streaks_longest(input_list, period): returns longest streaks for given completion dates
+streak_current(inlist, period, indate): returns current streak for given completion dates
+habit_streak_stats(inlist): returns habit information and streak statistics for given list of habits
+streak_data(df, mode): returns streak stats and habit info for longest current or all_time streaks
+completion_dates_statistics(habit): returns completion dates grouped by year and month
+count_completion_dates_statistics(habit): counts completions per month in each year
+"""
+
 import pandas as pd
 import tracker
 import tracker_util
@@ -25,7 +41,7 @@ def count_habit(inlist=tracker.Habit.habit_list, period="all") -> int:
 
 
 def habit_completion_counts(inlist, indate_early, indate_late=datetime.today()) -> list:
-    """Calculates number of completions for each habit in given period for a list of habit objects
+    """Calculates number of completions for each habit for a list of habit objects
 
     :param list[habit] inlist: list of habit objects
     :param datetime indate_early: cutoffdate early

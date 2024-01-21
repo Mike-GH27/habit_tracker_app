@@ -1,10 +1,21 @@
+"""
+This module provides an interface between the application and the SQL database. It loads and saves data
+
+create_db(db_name): creates database with given name
+insert_data_habit(...): insert attributes except completion dates from habit object into database
+insert_complete_time_list(...): inserts completion dates into database
+read_data_habits(...): reads habit attributes except completion dates from database
+read_complete_time_list(...): reads completion dates from database
+object_to_db(db_name): saves habit objects stored in habit_list to given database
+db_to_object(db_name): loads habit objects stored in database to habit_list
+app_load_data_base(db_name): loads habit objects from database and creates database if it does not exist already
+"""
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, ForeignKey, insert
 import datetime
 import shutil
 import os
 import tracker
 import tracker_util
-import tracker_testing_data
 from datetime import datetime
 
 
@@ -147,7 +158,7 @@ def db_to_object(db_name='sqlite:///user_data.db') -> None:
 
 
 def app_load_data_base(file_name_1="user_data.db") -> None:
-    """Creates list of habit objects from database: creates database if it does not exist
+    """Loads habit objects from database: creates database if it does not exist
     :param str file_name_1: file name of database
     """
     if not os.path.isfile(file_name_1):

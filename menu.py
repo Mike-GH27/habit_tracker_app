@@ -1,9 +1,57 @@
+"""
+This module contains the user interface and starts the application.
+
+Structure
+
+Global variables:
+    global_menu_block: dict with building blocks for menu design
+    global_dict and global_dict_2: empty dicts used for temporary storage of index values for habit_list
+    global_period_options: dict with possible options for custom period setting in analytics menu
+    global_variables: performance settings in analytics module
+Menu output: -> print menu items
+    main_menu()
+    all_habits(): prints all habits grouped by periodicity
+    habit_menu(index): prints habit management menu for a habit determined by the habit_list index
+    complete_habit(): prints habit completion menu that print all habits by completion status
+    analytics(): prints analytics menu
+    change_period(): prints menu for changing period settings in analytics menu
+    analytics_general_overview(): prints general overview over habit completion performance
+    analytics_performance_analysis(): prints analysis of completion statistics for given periodicity and period
+    analytics_performance_overview(): prints performance ranking for habits of given period and periodicity
+    choice_date_end(): selection menu for choosing end date of period
+User interface: -> provides prompt to user
+    app_main_menu(user_input): user interface for main menu
+    app_new_habit(habit_name: period): user enters habit name and periodicity for new habit
+    app_all_habits(user_input): user interface for all habits menu
+    app_habit_menu(user_input, index): user interface for habit management menu
+    app_change_habit_name(index, user_input): user enters new habit name
+    app_change_habit_period(index, user_input): user enters new habit periodicity
+    app_complete_habit(user_input): user interface for complete_habit menu where user marks habit as completed
+    app_analytics(user_input): user interface for analytics menu
+    app_change_period(user_input): user interface for change period menu
+    app_custom_date_start(user_year, user_month, user_day): user enters start date for custom date option
+    app_choice_end(user_choice): user interface for choice_date_end() menu
+    app_custom_date_end(user_year, user_month, user_day): user enter end date for custom date option
+    app_custom_period_daily(user_number): user enters number of days for custom period
+    app_custom_period_weekly(user_number): user enters number of weeks for custom period
+    app_period_choice_date_end(user_day, user_month, user_year): user enters end date for custom period
+    app_set_threshold(period, user_input): user enters potential completion threshold for given periodicity
+    app_back_to_main_menu(user_input): user enters input to return to main menu
+    app_back_to_analytics(user_input): user enters input to return to analytics menu
+    app_back_to_habit_menu(user_input, index): user enters input to return to habit management menu
+
+Auxiliary functions:
+    reset_global_variables(): resets global variables to their standard values
+    clear_screen(): clears command line interface
+    check_threshold(): check if daily and weekly threshold values exceed potential completions in period
+    print_app_heading(): prints application heading
+"""
+
 import analytics_module
 import tracker_util
 import click
 import databaseSQL
 import tracker
-import tracker_testing_data
 import calendar
 import os
 from datetime import datetime, timedelta

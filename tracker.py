@@ -1,3 +1,12 @@
+"""
+This module contains the Habit class with its methods
+
+    Methods:
+        clear_tracking_data(self): clears completion dates of habit
+        check_complete_status(self, indate): checks completion status of habit on given date
+        complete_habit(self, indate): mark habit as complete on given date
+"""
+
 from datetime import datetime
 import tracker_util
 

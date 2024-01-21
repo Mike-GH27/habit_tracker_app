@@ -1,3 +1,21 @@
+"""
+This module provides utility functions.
+
+Functions:
+    delete_file(file_name): deletes file with given name
+    indate_typeconversion(indate): converts given date into datetime object
+    get_date_string(indate): converts given datetime object into string with specified format
+    days_difference(indate1, indate2): returns difference of days between dates
+    day_streak(date1, date2): returns day difference + 1 between dates
+    week_streak(date1, date2): returns week difference + 1 between dates
+    is_long_year(inyear): checks if given year is an ISO long year
+    filter_habit_list(inlist, period): returns list of habit objects with given periodicity
+    filter_from_date(inlist, indate, mode): filters out dates before or after given date
+    date_conversion(inlist): drops HH:MM:SS from datetime objects
+    get_earliest_creation_date(inlist): returns earliest creation date from a list of habit objects
+"""
+
+
 import os
 import calendar
 from datetime import date, datetime
