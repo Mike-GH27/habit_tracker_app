@@ -455,14 +455,14 @@ def analytics_performance_analysis() -> None:
         click.echo(f" Total completions: {total_completions} out of {possible_completions} possible completions "
                    f"- ({len(df)} {period} habits tracked)")
         click.echo(global_menu_block["line"])
-        click.echo(f"-------> Completion rate: {completion_rate}% <-------")
+        click.echo(f"-------> Completion rate: {int(completion_rate)}% <-------")
         click.echo(global_menu_block["line"])
-        click.echo(f" Best performing habits with {best_complet_rate}% completion rate")
+        click.echo(f" Best performing habit(s) with {best_complet_rate}% completion rate")
         for i in range(len(list_perf_best)):
             click.echo(f" > {list_perf_best[i].name} with {list_perf_best[i].act_complet}/"
                        f"{list_perf_best[i].pot_complet_per_credate} completions")
         click.echo(global_menu_block["line"])
-        click.echo(f" Worst performing habits with {worst_complet_rate}% completion rate")
+        click.echo(f" Worst performing habit(s) with {worst_complet_rate}% completion rate")
         for i in range(len(list_perf_worst)):
             click.echo(f" > {list_perf_worst[i].name} with {list_perf_worst[i].act_complet}/"
                        f"{list_perf_worst[i].pot_complet_per_credate} completions")
@@ -476,7 +476,7 @@ def analytics_performance_analysis() -> None:
                 click.echo(f" - {list_creation_excluded[i].name} - creation date:"
                            f"{tracker_util.get_date_string(list_creation_excluded[i].credate)}")
         if len(df_threshold_excluded) == 0:
-            click.echo(f" No habits excluded based on threshold of {threshold}")
+            click.echo(f" No habits excluded based on potential completion threshold of {threshold}")
         else:
             list_threshold_excluded = list(df_threshold_excluded.itertuples())
             click.echo(f" Excluded habits due to potential completion threshold of {threshold}:")
@@ -561,7 +561,7 @@ def analytics_performance_overview() -> None:
                 click.echo(f" - {list_creation_excluded[i].name} - creation date:"
                            f"{tracker_util.get_date_string(list_creation_excluded[i].credate)}")
         if len(df_threshold_excluded) == 0:
-            click.echo(f" No habits excluded based on threshold of {threshold}")
+            click.echo(f" No habits excluded based on potential completion threshold of {threshold}")
         else:
             list_threshold_excluded = list(df_threshold_excluded.itertuples())
             click.echo(f" Excluded habits due to potential completion threshold of {threshold}:")
@@ -937,10 +937,11 @@ def app_analytics(user_input) -> None:
                 for i in range(len(current_streak)):
                     click.echo(global_menu_block["line"])
                     click.echo(
-                        f" {current_streak[i].name} with {current_streak[i].streak_c_length} days")
+                        f" {current_streak[i].name} with {current_streak[i].streak_c_length} weeks")
                     click.echo(
                         f" Streak started at "
                         f"{tracker_util.get_date_string(current_streak[i].streak_c_date)}")
+                click.echo(global_menu_block["line"])
         else:
             click.echo(global_menu_block["line"])
             click.echo(" No weekly habit has been being tracked")
@@ -971,7 +972,7 @@ def app_analytics(user_input) -> None:
                     for b in range(len(streak_longest[i].streak_l_dates)):
                         click.echo(global_menu_block["line"])
                         click.echo(
-                            f" {streak_longest[i].name} with {streak_longest[i].streak_l_length} days")
+                            f" {streak_longest[i].name} with {streak_longest[i].streak_l_length} weeks")
                         click.echo(
                             f" Streak went from "
                             f"{tracker_util.get_date_string(streak_longest[i].streak_l_dates[b][0])} to "
