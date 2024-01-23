@@ -57,7 +57,6 @@ import calendar
 import os
 from datetime import datetime, timedelta
 
-
 # auxiliary variables
 global_menu_block = {
     "line": "-----------------------------------------------------",
@@ -724,7 +723,7 @@ def app_habit_menu(user_input, index) -> None:
                     if (credate_year == year and m < credate_month) or (today_year == year and today_month < m):
                         continue
                     else:
-                        click.echo(f" - {calendar.month_name[m]}: {cdates[y][m-1]}")
+                        click.echo(f" - {calendar.month_name[m]}: {cdates[y][m - 1]}")
                 click.echo(global_menu_block["line"])
         app_back_to_habit_menu(index)
     # change habit description
@@ -1134,7 +1133,7 @@ def app_change_period(user_input) -> None:
             cutoff_date = (datetime.today().year, 1, 1)
         elif datetime.today().month in (7, 8, 9):
             cutoff_date = (datetime.today().year, 4, 1)
-        else: #  datetime.today().month in (10, 11, 12)
+        else:  # datetime.today().month in (10, 11, 12)
             cutoff_date = (datetime.today().year, 7, 1)
         end_date = datetime.today()
         global_variables["date_start"] = cutoff_date

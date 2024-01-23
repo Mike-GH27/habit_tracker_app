@@ -1,12 +1,4 @@
-import os
-import sys
 from datetime import datetime, timedelta
-
-# load modules from parent folder
-current = os.path.dirname(os.path.realpath(__file__))
-parent = os.path.dirname(current)
-sys.path.append(parent)
-
 import tracker
 import databaseSQL
 import tracker_util

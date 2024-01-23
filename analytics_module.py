@@ -67,7 +67,6 @@ def habit_completion_counts(inlist, indate_early, indate_late=datetime.today()) 
         elif x.period == "weekly":
             return indate_con_late + timedelta(days=(7 - indate_con_late.isoweekday()))
 
-
     # empty input
     if not inlist:
         return []
@@ -346,7 +345,7 @@ def streaks_longest(input_list, period) -> tuple:
         return 0, []
     if period == "daily":
         streak_func = tracker_util.day_streak
-    elif period == "weekly":
+    else:  # period == "weekly":
         streak_func = tracker_util.week_streak
 
     def rec_streak_longest(inlist):
@@ -400,6 +399,7 @@ def streak_current(inlist, period, indate=datetime.today()):
 
         :param list[datetime] inlist: list of completion dates
         :param str period: [daily, weekly]
+        :param datetime indate: date which should be considered current date
         :return: tuple[int, datetime]:
         current streak, start date of current streak"""
     if not inlist:
@@ -601,6 +601,3 @@ def count_completion_dates_statistics(habit) -> tuple:
 
 if __name__ == '__main__':
     pass
-
-
-
