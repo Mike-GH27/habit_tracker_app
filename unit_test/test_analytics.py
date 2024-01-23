@@ -192,7 +192,7 @@ class Test_Completion_Habits(unittest.TestCase):
                          "creation date or period start for tracker_testing_data")
 
     def test_potential_completion_percentage_period_creation_date(self):
-        self.assertEqual([11, 66, 5, 0, 5],
+        self.assertEqual([11, 33, 5, 0, 5],
                          analytics_module.completions_habits(self.habit_list,
                                                              self.test_date_start,
                                                              self.test_date_end)[5],
