@@ -421,11 +421,11 @@ def analytics_performance_analysis() -> None:
         click.echo("")
         return
 
-    df_threshold_excluded = df_period.loc[(df_period['per_credate_code'] == 3) &
+    df_threshold_excluded = df_period.loc[(df_period['per_credate_code'] == 1) &
                                           (df_period['pot_complet_credate'] < threshold)]
     df_creation_excluded = df_period.loc[df_period['per_credate_code'] == 0]
     # filtering out excluded habits
-    df = df_period.loc[~((df_period['per_credate_code'] == 3) & (df_period['pot_complet_credate'] < threshold)) &
+    df = df_period.loc[~((df_period['per_credate_code'] == 1) & (df_period['pot_complet_credate'] < threshold)) &
                        ~(df_period['per_credate_code'] == 0)]
 
     # variables for output
@@ -525,11 +525,11 @@ def analytics_performance_overview() -> None:
         click.echo("")
         return
 
-    df_threshold_excluded = df_period.loc[(df_period['per_credate_code'] == 3) &
+    df_threshold_excluded = df_period.loc[(df_period['per_credate_code'] == 1) &
                                           (df_period['pot_complet_credate'] < threshold)]
     df_creation_excluded = df_period.loc[df_period['per_credate_code'] == 0]
     # filtering out excluded habits
-    df = df_period.loc[~((df_period['per_credate_code'] == 3) & (df_period['pot_complet_credate'] < threshold)) &
+    df = df_period.loc[~((df_period['per_credate_code'] == 1) & (df_period['pot_complet_credate'] < threshold)) &
                        ~(df_period['per_credate_code'] == 0)]
     df = df.loc[:, ['name', 'complet_percent', 'act_complet', 'pot_complet_per_credate']]
     df = df.sort_values(by=['complet_percent', 'act_complet'], ascending=False)
@@ -1196,6 +1196,9 @@ def app_custom_date_start(user_year, user_month, user_day) -> None:
     int_day = int(user_day)
     int_month = int(user_month)
     int_year = int(user_year)
+    if int_year < tracker_util.get_earliest_creation_date(tracker.Habit.habit_list).year:
+        click.echo("Invalid input. Please enter a valid year")
+        app_custom_date_start()
     # input check for number of days of month
     if int_day == 29 and not calendar.isleap(int_year) and int_month == 2:
         click.echo(f" Invalid input: {int_year} is not a leap year. February only has 28 days")
@@ -1267,6 +1270,9 @@ def app_custom_date_end(user_year, user_month, user_day) -> None:
     int_month = int(user_month)
     int_year = int(user_year)
 
+    if int_year < tracker_util.get_earliest_creation_date(tracker.Habit.habit_list).year:
+        click.echo("Invalid input. Please enter a valid year")
+        app_custom_date_end()
     # input check for number of days of month
     if int_day == 29 and not calendar.isleap(int_year) and int_month == 2:
         click.echo(f" Invalid input: {int_year} is not a leap year. February only has 28 days")
@@ -1312,6 +1318,8 @@ def app_custom_period_daily(user_number) -> None:
         plural_s = ""
 
     global_variables["custom_period"] = f": last {user_number} day{plural_s}"
+    global_variables["period"] = "daily"
+    global_variables["period_number"] = user_number
     choice_date_end()
     app_period_choice_date_end()
 
@@ -1394,6 +1402,9 @@ def app_custom_period_date_end(user_day, user_month, user_year) -> None:
     int_day = int(user_day)
     int_month = int(user_month)
     int_year = int(user_year)
+    if int_year < tracker_util.get_earliest_creation_date(tracker.Habit.habit_list).year:
+        click.echo("Invalid input. Please enter a valid year")
+        app_custom_period_date_end()
     # input check for number of days of month
     if int_day == 29 and not calendar.isleap(int_year) and int_month == 2:
         click.echo(f" Invalid input: {int_year} is not a leap year. February only has 28 days")
@@ -1415,7 +1426,7 @@ def app_custom_period_date_end(user_day, user_month, user_year) -> None:
         else:  # global_variables["period"] == "weekly"
             period_factor = 7
         global_variables["date_start"] = (global_variables["date_end"] -
-                                          timedelta(days=period_factor * global_variables["period_number"]))
+                                          timedelta(days=period_factor * global_variables["period_number"] - 1))
         clear_screen()
         analytics()
         app_analytics()
