@@ -10,7 +10,8 @@ Copy the directory to your computer and navigate to the directory:
   * pandas 2.0.3
   * sqlalchemy 2.0.23
   * click 8.1.7
-* or alternatively enter "pip install -r requirements.txt" into the console while having your environment activated and being in application directory
+  * tabulate 0.9.0
+* or alternatively enter "pip install -r requirements.txt" into the console while having your environment activated and being in the application directory
 
 ## Usage
 While in the directory start the application by starting the menu.py file. Type into your console
